@@ -1,0 +1,25 @@
+/* component/table/index.wxss */
+.th,.td{
+  display: inline-block;
+  width: 16.5%;
+  text-align: center;
+  border-left: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 2rem;
+}
+.th:last-child,.td:last-child{
+  border-right: 1px solid #ccc;
+}
+.tr .td{
+  background: #E6F3F9;
+}
+.tr:nth-of-type(2n) .td{
+  background: #ffffff;
+}
+.th{
+  background: #99FF99;
+}
+.tr{
+  text-align: center;
+}

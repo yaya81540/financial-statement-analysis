@@ -1,0 +1,16 @@
+{
+  "name": "xcxcalculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "miniprogram": "dist",
+  "dependencies": {
+    "@vant/weapp": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

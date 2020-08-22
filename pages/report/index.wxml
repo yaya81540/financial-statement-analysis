@@ -1,0 +1,16 @@
+<!--pages/report/index.wxml-->
+<view>
+  <view>
+    <van-field id="stockCodes" data-num="0" value="{{ stockCodes }}" label="指数代码" title-width="110px" input-align="right" size="large" bind:change="handleChange"/>
+    <van-button round type="info" bind:click="handleSearch" block custom-class="cobutton">查询</van-button>
+  </view>
+  <view wx:if="{{showResult}}">
+    <view class="txt-c">营业收入分析</view>
+    <panel list="{{income.list}}" columns="{{income.columns}}"/>
+    <view wx:for="{{tableList}}" wx:key="key">
+      <view class="txt-c">{{item.name}}</view>
+      <table list="{{item.data.list}}" columns="{{item.data.columns}}"/>
+      <canvas wx:if="{{item.draw}}" canvas-id="{{item.key}}" disable-scroll="true" class="canvas"></canvas> 
+    </view>
+  </view>
+</view>

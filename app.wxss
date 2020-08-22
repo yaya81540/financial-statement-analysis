@@ -1,0 +1,15 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+.font12{
+  font-size: 12px;
+}
+.txt-c{
+  text-align: center;
+}

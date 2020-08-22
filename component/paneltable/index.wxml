@@ -1,0 +1,11 @@
+<!--component/paneltable/index.wxml-->
+<view>
+  <view class="tr">
+    <view class="th">项目</view>
+    <view wx:for="{{list}}" wx:key="key" class="th">{{item.stockCode}}</view>
+  </view>
+  <view wx:for="{{columns}}" wx:key="key" wx:for-item="obj" class="tr">
+    <view class="td">{{obj.title}}</view>
+    <view wx:for="{{list}}" wx:key="key" class="td">{{item[obj.dataIndex]}}</view>
+  </view>
+</view>

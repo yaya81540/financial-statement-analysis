@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/logs/logs",
+    "pages/report/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Y的计算器",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/report/index",
+        "text": "财务报表",
+        "iconPath": "./static/tabs/cwbb.png",
+        "selectedIconPath": "./static/tabs/cwbb-active.png"
+      },{
+        "pagePath": "pages/logs/logs",
+        "text": "我的信息",
+        "iconPath": "./static/tabs/home.png",
+        "selectedIconPath": "./static/tabs/home-active.png"
+      }
+    ]
+  }
+}

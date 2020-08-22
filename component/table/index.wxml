@@ -1,0 +1,9 @@
+<!--component/table/index.wxml-->
+<view class="center">
+  <view class="tr">
+    <view wx:for="{{columns}}" wx:key="key" class="th">{{item.title}}</view>
+  </view>
+  <view wx:for="{{list}}" wx:key="name" wx:for-item="obj" class="tr">
+    <view wx:for="{{columns}}" wx:key="key" class="td">{{obj[item.dataIndex]}}</view>
+  </view>
+</view>

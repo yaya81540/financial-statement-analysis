@@ -1,0 +1,6 @@
+<!--logs.wxml-->
+<view class="container log-list">
+  <view>作者：沫小司</view>
+  <image src="./ewm.jpeg" mode="aspectFit" show-menu-by-longpress/>
+  <view style="font-size:14px">如果您有什么意见或建议，欢迎扫码并留言</view>
+</view>
