@@ -347,8 +347,10 @@ Page({
       yszkzz:data.y.m.ar_ds?data.y.m.ar_ds.t:0,//应收账款周转天数
       
       // 现金流量表
-      sdxj:data.y.cfs.crfscapls?data.y.cfs.crfscapls.t:0//销售商品、提供劳务收到的现金
-      
+      sdxj:data.y.cfs.crfscapls?data.y.cfs.crfscapls.t:0,//销售商品、提供劳务收到的现金
+      jyhdxjll:data.y.cfs.ncffoa?data.y.cfs.ncffoa.t:0,//经营活动产生的现金流量净额
+      tzhdxjll:data.y.cfs.ncffia?data.y.cfs.ncffia.t:0,//投资活动产生的现金流量净额
+      czhdxjll:data.y.cfs.ncfffa?data.y.cfs.ncfffa.t:0//筹资活动产生的现金流量净额
     }
     orgData.yycbl = orgData.yycb/orgData.yysr;//营业成本率
     orgData.zsxbz = orgData.sdxj/orgData.yysr;//真实性比值
@@ -356,6 +358,7 @@ Page({
     orgData.cqzjzb = (orgData.gdqy+orgData.fldfz)/(orgData.gdzc+orgData.zjgc)//长期资金占不动产及设备比率
     orgData.yxzcbl = (orgData.gdzc+orgData.zjgc)/orgData.zchj//有形资产比例
     orgData.lrzhzb = orgData.lrze/(orgData.gdzc+orgData.zjgc)// 利润总额占有形资产比例
+    orgData.xjlfx = orgData.jyhdxjll+orgData.tzhdxjll+orgData.czhdxjll//现金流量分析
     return orgData
   },
   // 设置表格数据并画图 data/原始数据,name/公司名,key/关键字,isb/是否百分比,unit/单位
@@ -466,6 +469,60 @@ Page({
     },option)
     new wxCharts(obj);
   },
+  //设置现金流肖像分析
+  setCashFlow(data){
+    let columns = [
+      {
+        title: '项目',
+        dataIndex: 'name',
+        key: 'name',
+      }
+    ];
+    let list = [];
+    let nameList = [
+      {
+        name:'经营活动',
+        key:'jyhdxjll'
+      },
+      {
+        name:'投资活动',
+        key:'tzhdxjll'
+      },
+      {
+        name:'筹资活动',
+        key:'czhdxjll'
+      },
+      {
+        name:'合计',
+        key:'xjlfx'
+      }
+    ]
+    data.map((item,i)=>{
+      columns.push({
+        title: item.year,
+        dataIndex: item.year,
+        key: item.year,
+      })
+    })
+    
+    nameList.map((v,index)=>{
+      list.push({name:v.name})
+      data.map((item,i)=>{
+        list[index][item.year]=Util.numberHandle(item[v.key])
+      })
+    })
+    
+    this.data.tableList.push({
+      name:'现金流分析',
+      key:'xjlfx',
+      isb:false,
+      unit:'',
+      data:{
+        list:list,
+        columns:columns
+      }
+    })
+  },
   handleWrite({index,name,key,isb,unit,draw}){
     let data=this.setTable(Object.assign({},{
       data:this.data.orgData,
@@ -532,7 +589,10 @@ Page({
           "y.m.i_ds.t",
           "y.m.ar_ds.t",
           "y.ps.gp_m.t",
-          "y.cfs.crfscapls.t"
+          "y.cfs.crfscapls.t",
+          "y.cfs.ncffoa.t",
+          "y.cfs.ncffia.t",
+          "y.cfs.ncfffa.t"
         ]
       },
       enableCache:true,
@@ -589,6 +649,7 @@ Page({
       this.data.tableList.map((v,index)=>{
         this.handleWrite({index,...v})
       })
+      this.setCashFlow(this.data.orgData[0].data)
       this.setData({tableList:this.data.tableList,showResult:true})
       return
     }
